@@ -87,6 +87,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Is this not a great title??',
+    date: 'Mar 6, 1986',
+    firstParagraph: 'I was born on this day',
+
+    secondParagraph: 'But so was Shaq',
+
+    thirdParagraph: 'So it is kind of his day, globally'
+
   }
 ];
 
@@ -133,7 +143,10 @@ function articleMaker (data) {
 
   // add content
   header.textContent = data.title;
-  paragraph.textContent = data.firstParagraph + '\n\n' + data.secondParagraph +'\n\n' + data.thirdParagraph;
+  paragraph.textContent = `${data.firstParagraph} \n ${data.secondParagraph} \n ${data.thirdParagraph}`;
+
+  //other idea : data.firstParagraph +'\n'+ data.secondParagraph +'\n'+ data.thirdParagraph
+
   span.textContent = '+';
   
   // add event listner to the expand button
@@ -145,12 +158,7 @@ function articleMaker (data) {
   return article
 }
 
-const newArticle = articleMaker(data)
-
-console.log(newArticle)
-
 const articlesDiv = document.querySelector('.articles');
-console.log(articlesDiv)
 
 data.forEach ((elem) => {
   const article = articleMaker(elem);
