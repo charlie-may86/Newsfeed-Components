@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // This is the data we will be using to create our articles. Look at it, then proceed to line 93.
 // OPTIONAL: if you're feeling adventurous, try to make this data an export from a different module, and import it here.
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
@@ -86,6 +87,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Is this not a great title??',
+    date: 'Mar 6, 1986',
+    firstParagraph: 'I was born on this day',
+
+    secondParagraph: 'But so was Shaq',
+
+    thirdParagraph: 'So it is kind of his day, globally'
+
   }
 ];
 
@@ -114,3 +125,42 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker (data) {
+  //create html elements
+  const article = document.createElement('div');
+  article.classList.add('article');
+  const header = document.createElement('h2');
+  const paragraph = document.createElement('p');
+  paragraph.classList.add('date');
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+
+  // append correctly
+  article.appendChild(header);
+  article.appendChild(paragraph);
+  article.appendChild(span);
+
+  // add content
+  header.textContent = data.title;
+  paragraph.textContent = `${data.firstParagraph} \n ${data.secondParagraph} \n ${data.thirdParagraph}`;
+
+  //other idea : data.firstParagraph +'\n'+ data.secondParagraph +'\n'+ data.thirdParagraph
+
+  span.textContent = '+';
+  
+  // add event listner to the expand button
+  span.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  
+  return article
+}
+
+const articlesDiv = document.querySelector('.articles');
+
+data.forEach ((elem) => {
+  const article = articleMaker(elem);
+  articlesDiv.appendChild(article);
+})
