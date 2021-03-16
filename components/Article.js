@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // This is the data we will be using to create our articles. Look at it, then proceed to line 93.
 // OPTIONAL: if you're feeling adventurous, try to make this data an export from a different module, and import it here.
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
@@ -131,8 +132,14 @@ function articleMaker (data) {
   article.appendChild(span);
 
   // add content
-  header.textContent = data[0].title;
-  paragraph.textContent = data[0].firstParagraph + '\n\n' + data[0].secondParagraph +'\n\n' + data[0].thirdParagraph; 
+  header.textContent = data.title;
+  paragraph.textContent = data.firstParagraph + '\n\n' + data.secondParagraph +'\n\n' + data.thirdParagraph;
+  span.textContent = '+';
+  
+  // add event listner to the expand button
+  span.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
 
   
   return article
@@ -141,3 +148,11 @@ function articleMaker (data) {
 const newArticle = articleMaker(data)
 
 console.log(newArticle)
+
+const articlesDiv = document.querySelector('.articles');
+console.log(articlesDiv)
+
+data.forEach ((elem) => {
+  const article = articleMaker(elem);
+  articlesDiv.appendChild(article);
+})
